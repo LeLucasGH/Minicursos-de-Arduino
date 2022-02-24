@@ -1,71 +1,11 @@
 // C++ version
-// Non-functional in Arduino
-
+// Working as intended
 
 
 using namespace std;
 
-
 int speed = 300; //lower is faster
-string input = "sos"; // write your input here
-
-map<char, string> char2morse;
-char2morse['a'] = ".-";
-char2morse['b'] = "-...";
-char2morse['c'] = "-.-.";
-char2morse['d'] = "-..";
-char2morse['e'] = ".";
-char2morse['f'] = "..-.";
-char2morse['g'] = "--.";
-char2morse['h'] = "....";
-char2morse['i'] = "..";
-char2morse['j'] = ".---";
-char2morse['k'] = "-.-";
-char2morse['l'] = ".-..";
-char2morse['m'] = "--";
-char2morse['n'] = "-.";
-char2morse['o'] = "---";
-char2morse['p'] = ".--.";
-char2morse['q'] = "--.-";
-char2morse['r'] = ".-.";
-char2morse['s'] = "...";
-char2morse['t'] = "-";
-char2morse['u'] = "..-";
-char2morse['v'] = "...-";
-char2morse['w'] = ".--";
-char2morse['x'] = "-..-";
-char2morse['y'] = "-.--";
-char2morse['z'] = "--..";
-char2morse[' '] = ".";
-char2morse['1'] = ".----";
-char2morse['2'] = "..---";
-char2morse['3'] = "...--";
-char2morse['4'] = "....-";
-char2morse['5'] = ".....";
-char2morse['6'] = "-....";
-char2morse['7'] = "--...";
-char2morse['8'] = "---..";
-char2morse['9'] = "----.";
-char2morse['0'] = "-----";
-char2morse['.'] = ".-.-.-";
-char2morse[','] = "--..--";
-char2morse['?'] = "..--..";
-char2morse['\''] = ".----.";
-char2morse['!'] = "-.-.--";
-char2morse['/'] = "-..-.";
-char2morse['('] = "-.--.";
-char2morse[')'] = "-.--.-";
-char2morse['&'] = ".-...";
-char2morse[':'] = "---...";
-char2morse[';'] = "-.-.-.";
-char2morse['='] = "-...-";
-char2morse['+'] = ".-.-.";
-char2morse['-'] = "-....-";
-char2morse['_'] = "..--.-";
-char2morse['\"'] = ".-..-.";
-char2morse['$'] = "...-..-";
-char2morse['@'] = ".--.-.";
-
+String entrada = "sos"; // write your input here
 
 
 void dit()
@@ -76,7 +16,7 @@ void dit()
   delay(speed);
 }
 
-void dit()
+void dah()
 {
   digitalWrite(8, HIGH);
   delay(3*speed);
@@ -84,6 +24,69 @@ void dit()
   delay(speed);
 }
 
+String char2morse(char a)
+{
+  if(a == 'a') {return ".-";} else{
+if(a == 'b') {return "-...";} else{
+if(a == 'c') {return "-.-.";} else{
+if(a == 'd') {return "-..";} else{
+if(a == 'e') {return ".";} else{
+if(a == 'f') {return "..-.";} else{
+if(a == 'g') {return "--.";} else{
+if(a == 'h') {return "....";} else{
+if(a == 'i') {return "..";} else{
+if(a == 'j') {return ".---";} else{
+if(a == 'k') {return "-.-";} else{
+if(a == 'l') {return ".-..";} else{
+if(a == 'm') {return "--";} else{
+if(a == 'n') {return "-.";} else{
+if(a == 'o') {return "---";} else{
+if(a == 'p') {return ".--.";} else{
+if(a == 'q') {return "--.-";} else{
+if(a == 'r') {return ".-.";} else{
+if(a == 's') {return "...";} else{
+if(a == 't') {return "-";} else{
+if(a == 'u') {return "..-";} else{
+if(a == 'v') {return "...-";} else{
+if(a == 'w') {return ".--";} else{
+if(a == 'x') {return "-..-";} else{
+if(a == 'y') {return "-.--";} else{
+if(a == 'z') {return "--..";} else{
+if(a == '1') {return ".----";} else{
+if(a == '2') {return "..---";} else{
+if(a == '3') {return "...--";} else{
+if(a == '4') {return "....-";} else{
+if(a == '5') {return ".....";} else{
+if(a == '6') {return "-....";} else{
+if(a == '7') {return "--...";} else{
+if(a == '8') {return "---..";} else{
+if(a == '9') {return "----.";} else{
+if(a == '0') {return "-----";} else{
+if(a == '.') {return ".-.-.-";} else{
+if(a == ',') {return "--..--";} else{
+if(a == '?') {return "..--..";} else{
+if(a == '\\') {return  ".----.";} else{
+if(a == '!') {return "-.-.--";} else{
+if(a == '/') {return "-..-.";}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+}
+
+void blinkString(String a)
+{
+  for (auto Atual: a)
+  {
+    if (Atual == ' ')
+    {delay(speed*6);}
+    
+    String morseAtual = char2morse(Atual);
+    for (auto digito: morseAtual)
+    {
+      if (digito == '.') {dit();}
+      if (digito == '-') {dah();}
+    }
+    
+    delay(speed * 2);
+  }
+}
 
   
 void setup()
@@ -96,16 +99,7 @@ void setup()
 
 void loop()
 {
- for(auto letra: input)
- {
-   morseAtual = char2morse[letra]
-   for(auto sinal: morseAtual)
-   {
-     if(sinal == '.'){dit();}
-     else{dah()}
-   }
- }
- input = "";
+ blinkString(entrada);
+ entrada = "";
   
 }
-
